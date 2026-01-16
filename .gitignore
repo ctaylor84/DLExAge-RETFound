@@ -131,4 +131,9 @@ dmypy.json
 # Pyre type checker
 .pyre/
 
-IDRiD_data
+datasets/
+finetune/
+eval/
+output_dir/
+output_dir./
+.ruff_cache/
