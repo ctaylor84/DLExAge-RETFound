@@ -229,13 +229,10 @@ def evaluate(data_loader, model, criterion, norm_params, device, task, epoch, mo
             prediction_list.append(output_np)
             target_list.append(target_np)
 
-        batch_rmse = root_mean_squared_error(target_np, output_np)
-        batch_r2 = r2_score(target_np, output_np)
-
         batch_size = images.shape[0]
         metric_logger.update(loss=loss.item())
-        metric_logger.meters["rmse"].update(batch_rmse, n=batch_size)
-        metric_logger.meters["r2"].update(batch_r2, n=batch_size)
+        batch_mae = mean_absolute_error(target_np, output_np)
+        metric_logger.meters["mae"].update(batch_mae, n=batch_size)
 
     prediction_list = np.concatenate(prediction_list)
     target_list = np.concatenate(target_list)
